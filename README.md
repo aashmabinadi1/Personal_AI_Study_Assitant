@@ -122,7 +122,10 @@ The main objective of this project is to provide students with a simple and acce
 
 ##  Author
 
-**Computer Engineering Student**
+Developed by **Aashma Binadi**
+
+Computer Engineering Student
+
 
 ##  Future Improvements
 
