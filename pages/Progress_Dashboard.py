@@ -103,7 +103,7 @@ else:
 # ==================================
 
 st.divider()
-st.subheader("🔥 Study Streak Tracking")
+st.subheader(" Study Streak Tracking")
 
 ACTIVITY_FILE = os.path.join("data", "study_activity.csv")
 
@@ -212,7 +212,7 @@ if not unique_dates:
 # ==================================
 
 st.divider()
-st.subheader("📚 Subject-wise Progress Analytics")
+st.subheader("Subject-wise Progress Analytics")
 
 tasks = st.session_state.get("study_tasks", [])
 

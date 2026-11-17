@@ -52,16 +52,24 @@ st.write("Test your knowledge with multiple-choice questions.")
 st.divider()
 
 study_text = st.session_state.get("study_text", "")
-
+selected_material_id = st.session_state.get("selected_material_id", "")
 if not study_text:
     st.warning("Please upload a PDF first in Study Materials.")
 
 else:
-    st.success("Study material found!")
-
     # Initialize quiz attempt ID
     if "quiz_attempt_id" not in st.session_state:
         st.session_state["quiz_attempt_id"] = 0
+
+    # Clear the previous quiz if the selected PDF changes
+    if (
+        "quiz_material_id" in st.session_state
+        and st.session_state["quiz_material_id"] != selected_material_id
+    ):
+        st.session_state["quiz_questions"] = []
+        st.session_state["quiz_submitted"] = False
+        st.session_state["quiz_material_id"] = selected_material_id
+        st.session_state["quiz_attempt_id"] += 1
 
     # Generate Quiz
     if st.button("Generate AI Quiz", key="generate_quiz"):
@@ -73,12 +81,16 @@ else:
                 )
 
                 st.session_state["quiz_questions"] = questions
+                st.session_state["quiz_material_id"] = selected_material_id
                 st.session_state["quiz_submitted"] = False
                 st.session_state["quiz_attempt_id"] += 1
 
             except Exception as error:
                 st.error(f"Quiz generation failed: {error}")
 
+    st.success("Study material found!")
+
+   
     # Display Quiz
     questions = st.session_state.get("quiz_questions", [])
 
