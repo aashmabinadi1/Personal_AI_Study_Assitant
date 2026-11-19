@@ -1,26 +1,28 @@
-# Personal AI Study Assistant 
+# Personal AI Study Assistant
 
-A Python-based study assistant built with Streamlit that helps students organize study materials, generate quizzes, manage study tasks, and monitor their learning progress.
+A Python-based study assistant built with Streamlit to help students manage study materials, generate practice quizzes, organize study tasks, and track learning progress.
 
 ## Features
 
 ### 1. Study Materials
-- Upload PDF study materials.
-- Extract text from PDF files.
-- Generate summaries using TF-IDF-based extractive summarization.
+- Upload and manage PDF study materials.
+- Extract text from PDF documents.
+- Generate concise summaries using TF-IDF-based extractive summarization.
+- Maintain a personal study materials library.
 
 ### 2. Offline Quiz Generator
-- Generate multiple-choice questions from uploaded study materials.
+- Generate multiple-choice questions from selected study materials.
 - Randomize answer options.
-- Submit answers and view results.
+- Submit answers and view quiz scores.
 - Review correct answers and explanations.
+- Maintain quiz attempt history.
 
 ### 3. Study Planner
-- Add study tasks with subjects and deadlines.
-- Assign task priorities (High, Medium, Low).
+- Create study tasks with subjects and deadlines.
+- Assign task priorities: High, Medium, and Low.
 - Mark tasks as completed.
-- Delete tasks.
-- Save tasks using CSV file storage.
+- Monitor pending and completed tasks.
+- Store task information using CSV files.
 
 ### 4. Progress Dashboard
 - View total, completed, and pending tasks.
@@ -30,17 +32,19 @@ A Python-based study assistant built with Streamlit that helps students organize
 - View a study activity calendar.
 - Analyze progress by subject.
 
-##  Technologies Used
+## Technologies Used
 
-- **Programming Language:** Python
-- **Frontend:** Streamlit
-- **Data Processing:** Pandas, NumPy
-- **Machine Learning / NLP:** Scikit-learn (TF-IDF)
-- **PDF Processing:** pypdf
-- **Data Storage:** CSV
-- **Version Control:** Git and GitHub
+| Technology | Purpose |
+|---|---|
+| Python | Main programming language |
+| Streamlit | Web application framework |
+| NumPy | Numerical operations |
+| Scikit-learn | TF-IDF-based text summarization |
+| pypdf | PDF text extraction |
+| CSV and JSON | Local data storage |
+| Git and GitHub | Version control |
 
-##  Project Structure
+## Project Structure
 
 ```text
 Personal_AI_Study_Assistant/
@@ -65,7 +69,7 @@ Personal_AI_Study_Assistant/
 └── README.md
 ```
 
-##  Installation and Setup
+## Installation and Setup
 
 ### 1. Clone the repository
 
@@ -87,7 +91,7 @@ python -m venv .venv
 
 ### 4. Activate the virtual environment
 
-Windows:
+**Windows:**
 
 ```bash
 .venv\Scripts\activate
@@ -105,31 +109,30 @@ pip install -r requirements.txt
 streamlit run app.py
 ```
 
-The application will open in your browser.
+The application will open in your web browser.
 
-##  Data Storage
+## Data Storage
 
-The application uses CSV files to store:
+The application uses local CSV and JSON files to store:
 - Study tasks
 - Quiz attempt history
 - Study activity records
+- Saved study materials and summaries
 
-These files are generated locally when the application is used.
+These files are generated locally while using the application.
 
-##  Project Objective
+## Project Objective
 
-The main objective of this project is to provide students with a simple and accessible platform for managing study materials, practicing through quizzes, organizing tasks, and tracking academic progress.
+The objective of this project is to provide students with an accessible platform for managing learning resources, practicing through automatically generated quizzes, organizing study schedules, and monitoring academic progress.
 
-##  Author
+## Future Improvements
 
-Developed by **Aashma Binadi**
+- Enhance quiz generation and question quality.
+- Introduce more detailed learning analytics.
+- Improve the user interface and user experience.
+- Add additional study productivity features.
 
+## Author
+
+**Aashma Binadi**  
 Computer Engineering Student
-
-
-##  Future Improvements
-
-- Enhanced quiz generation and question quality.
-- More detailed learning analytics.
-- Improved user interface.
-- Additional study productivity features.

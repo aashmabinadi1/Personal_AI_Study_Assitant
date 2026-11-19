@@ -80,11 +80,11 @@ if "study_summary" not in st.session_state:
 # Page heading
 # --------------------------------------------------
 
-st.title("Personal AI Study Assistant")
-st.header("Study Materials Manager")
+st.title("Study Materials")
 
 st.write(
-    "Upload, organize, and summarize your study materials."
+    "Manage your learning resources, extract PDF content, "
+    "and generate concise study summaries."
 )
 
 st.divider()
@@ -94,11 +94,13 @@ st.divider()
 # Upload new PDF
 # --------------------------------------------------
 
-st.subheader("Add New Study Material")
+st.subheader("Add Study Material")
+
 
 uploaded_file = st.file_uploader(
-    "Upload your study PDF",
+    "Choose a PDF file",
     type=["pdf"],
+    help="Upload text-based PDF files up to 200 MB.",
     key="study_pdf"
 )
 
@@ -113,33 +115,52 @@ if uploaded_file is not None:
 
             if extracted_text and extracted_text.strip():
 
-                new_material = {
-                    "id": str(uuid.uuid4()),
-                    "title": os.path.splitext(uploaded_file.name)[0],
-                    "study_text": extracted_text,
-                    "summary": ""
-                }
+                # Check whether this PDF already exists
+                duplicate_exists = any(
+                    material["study_text"].strip() == extracted_text.strip()
+                    for material in st.session_state["study_library"]
+                )
 
-                st.session_state["study_library"].append(new_material)
+                if duplicate_exists:
 
-                save_library(st.session_state["study_library"])
+                    st.warning(
+                        "This study material is already in your library."
+                    )
 
-                st.session_state["selected_material_id"] = new_material["id"]
-                st.session_state["study_text"] = extracted_text
-                st.session_state["study_summary"] = ""
+                else:
 
-                st.success("PDF added to your Study Materials Library!")
+                    new_material = {
+                        "id": str(uuid.uuid4()),
+                        "title": os.path.splitext(uploaded_file.name)[0],
+                        "study_text": extracted_text,
+                        "summary": ""
+                    }
 
-                st.rerun()
+                    st.session_state["study_library"].append(new_material)
+
+                    save_library(st.session_state["study_library"])
+
+                    st.session_state["selected_material_id"] = new_material["id"]
+                    st.session_state["study_text"] = extracted_text
+                    st.session_state["study_summary"] = ""
+
+                    st.success(
+                        "PDF added to your Study Materials Library!"
+                    )
+
+                    st.rerun()
 
             else:
+
                 st.warning(
                     "No readable text was found. "
                     "Please upload a text-based PDF."
                 )
 
         except Exception as e:
+
             st.error(f"PDF extraction failed: {e}")
+
 
 
 st.divider()
@@ -149,7 +170,10 @@ st.divider()
 # Saved materials library
 # --------------------------------------------------
 
-st.subheader("Your Saved Study Materials")
+st.subheader("Your Study Library")
+st.write(
+    "Browse your saved PDFs and select one to view its content or generate a summary."
+)
 
 materials = st.session_state["study_library"]
 
@@ -181,22 +205,23 @@ if materials:
 
     st.session_state["selected_material_id"] = selected_id
     st.session_state["study_text"] = selected_material["study_text"]
-    st.session_state["selected_material_id"] = selected_id
+    
     st.session_state["study_summary"] = selected_material["summary"]
 
     st.success("Study material loaded successfully!")
+    st.caption("Selected study material is ready.")
 
     # View extracted text
-    with st.expander("View Extracted Text"):
+    with st.expander("View PDF Content"):
 
-        st.text_area(
-            "PDF Content",
-            selected_material["study_text"],
-            height=300,
-            key=f"text_{selected_id}"
-        )
+     st.write("Extracted text from your selected study material.")
 
-    st.divider()
+    st.text_area(
+        "Document Content",
+        selected_material["study_text"],
+        height=350,
+        key=f"text_{selected_id}"
+    )
 
     # Generate summary
     if st.button("Generate AI Summary", type="primary"):
@@ -219,13 +244,16 @@ if materials:
         except Exception as e:
             st.error(f"Summary generation failed: {e}")
 
-    # Display saved summary
+     # Display saved summary
     if selected_material["summary"]:
 
-        st.subheader("Study Summary")
-        st.write(selected_material["summary"])
+     st.subheader("Study Summary")
 
+     st.caption(
+        "A concise summary generated from your selected PDF."
+    )
     st.divider()
+    st.markdown(selected_material["summary"])
 
         # Delete material
     st.subheader("Manage Study Materials")

@@ -6,9 +6,12 @@ from datetime import date
 
 st.title("Study Planner")
 
-st.write("Organize your subjects, tasks, and study deadlines.")
-st.divider()
+st.write(
+    "Plan your study schedule, manage deadlines, "
+    "and track your daily progress."
+)
 
+st.divider()
 # CSV file locations
 TASK_FILE = os.path.join("data", "study_tasks.csv")
 ACTIVITY_FILE = os.path.join("data", "study_activity.csv")
@@ -102,7 +105,12 @@ if "study_tasks" not in st.session_state:
 
 
 # Add a new task
-st.subheader("Add a Study Task")
+st.subheader("Create a New Task")
+
+st.write(
+    "Add a subject, set a deadline, and choose its priority "
+    "to organize your study schedule."
+)
 
 with st.form("study_task_form"):
 
@@ -119,7 +127,11 @@ with st.form("study_task_form"):
         ["High", "Medium", "Low"]
     )
 
-    submitted = st.form_submit_button("Add Task")
+    submitted = st.form_submit_button(
+    "Add Study Task",
+    type="primary",
+    use_container_width=True
+)
 
     if submitted:
         if task_name.strip() and subject.strip():
@@ -143,8 +155,6 @@ with st.form("study_task_form"):
 
 
 # Display tasks
-st.divider()
-st.subheader("My Study Tasks")
 
 tasks = st.session_state["study_tasks"]
 
@@ -156,9 +166,14 @@ if tasks:
 
     total_tasks = len(tasks)
 
-    st.write(f"Completed: {completed_count}/{total_tasks}")
+    columns = st.columns(2)
 
-    st.progress(completed_count / total_tasks)
+    columns[0].metric("Total Tasks", total_tasks)
+    columns[1].metric("Completed Tasks", completed_count)
+    st.progress(
+    completed_count / total_tasks,
+    text=f"{completed_count} of {total_tasks} tasks completed"
+)
 
     for i, task in enumerate(tasks):
 

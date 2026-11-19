@@ -54,7 +54,11 @@ st.divider()
 study_text = st.session_state.get("study_text", "")
 selected_material_id = st.session_state.get("selected_material_id", "")
 if not study_text:
-    st.warning("Please upload a PDF first in Study Materials.")
+   st.info(
+    "No study material selected yet. "
+    "Please upload or select a PDF in the Study Materials page "
+    "before generating a quiz."
+)
 
 else:
     # Initialize quiz attempt ID
@@ -91,7 +95,7 @@ else:
     st.success("Study material found!")
 
    
-    # Display Quiz
+        # Display Quiz
     questions = st.session_state.get("quiz_questions", [])
 
     if questions:
@@ -102,17 +106,24 @@ else:
 
         # Display questions
         for i, question in enumerate(questions):
+
+            st.markdown(
+                f"**Question {i + 1} of {len(questions)}**"
+            )
+
             question_text = question["question"].replace("**", "")
-            st.write(f"Q{i + 1}. {question_text}")
+
+            st.write(question_text)
 
             user_answers[i] = st.radio(
-                "Choose your answer:",
+                "Select your answer",
                 question["options"],
                 index=None,
                 key=f"quiz_{attempt_id}_{i}",
                 disabled=st.session_state.get("quiz_submitted", False)
             )
 
+            st.divider()
         
         # Submit Quiz
         if not st.session_state.get("quiz_submitted", False):
@@ -162,9 +173,13 @@ else:
             st.divider()
             st.subheader("Your Results")
 
-            st.write(f"Your score: {score}/{len(questions)}")
-            st.progress(percentage / 100)
+            st.metric(
+    label="Your Quiz Score",
+    value=f"{score}/{len(questions)}",
+    delta=f"{percentage:.1f}%"
+)
 
+            st.progress(percentage / 100)
             if percentage >= 80:
                 st.success("Excellent work!")
             elif percentage >= 50:
@@ -172,7 +187,11 @@ else:
             else:
                 st.warning("Keep studying and try again.")
 
-            st.subheader("Answer Review")
+            st.subheader("Review Your Answers")
+            st.write(
+    "Check the correct answers and explanations to understand "
+    "any mistakes."
+)
 
             for i, question in enumerate(questions):
                 question_text = question["question"].replace("**", "")
@@ -188,7 +207,11 @@ else:
                 st.write(f"Explanation: {question['explanation']}")
 
             # Retake Quiz
-            if st.button("Retake Quiz", key="retake_quiz"):
+            if st.button(
+    "Retake Quiz",
+    key="retake_quiz",
+    type="primary"
+):
                 st.session_state["quiz_attempt_id"] += 1
                 st.session_state["quiz_submitted"] = False
                 st.rerun()
