@@ -136,3 +136,21 @@ The objective of this project is to provide students with an accessible platform
 
 **Aashma Binadi**  
 Computer Engineering Student
+
+
+## 📸 Application Screenshots
+
+### Homepage
+![Homepage](assets/homepage.png)
+
+### Study Materials
+![Study Materials](assets/study-materials.png)
+
+### AI Quiz Generator
+![Quiz Generator](assets/quiz-generator.png)
+
+### Study Planner
+![Study Planner](assets/study-planner.png)
+
+### Progress Dashboard
+![Progress Dashboard](assets/progress-dashboard.png)
