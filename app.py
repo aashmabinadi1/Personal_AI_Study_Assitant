@@ -138,11 +138,23 @@ st.markdown(dedent("""
     }
 
     /* Navigation links */
-    [data-testid="stPageLink"] {
-        background-color: #ffffff;
-        border: 1px solid #dce5f0;
-        border-radius: 9px;
-        padding: 8px 12px;
+[data-testid="stPageLink"] {
+    background-color: #ffffff;
+    border: 1px solid #dce5f0;
+    border-radius: 9px;
+    padding: 8px 12px;
+}
+
+[data-testid="stPageLink"] a,
+[data-testid="stPageLink"] a p,
+[data-testid="stPageLink"] a span {
+    color: #1e3557 !important;
+}
+
+[data-testid="stPageLink"] a svg {
+    color: #1e3557 !important;
+    fill: #1e3557 !important;
+}
     }
 
     /* Study tip */
@@ -310,7 +322,7 @@ with col2:
     st.html("""
     <div class="feature-card">
         <div class="feature-icon"></div>
-        <h3>AI Quiz Generator</h3>
+        <h3>Automatically generated quizzes</h3>
         <p>
             Generate multiple-choice questions from your
             study materials and evaluate your knowledge.
