@@ -140,13 +140,19 @@ Computer Engineering Student
 
 ## 📸 Application Screenshots
 
+
+## Application Screenshots
+
 ### Homepage
 ![Homepage](assets/homepage.png)
+![Homepage Features](assets/homepage-features.png)
+![Homepage Section 2](assets/homepage-section-2.png)
+![Homepage Section 3](assets/homepage-section-3.png)
 
 ### Study Materials
 ![Study Materials](assets/study-materials.png)
 
-### AI Quiz Generator
+### Quiz Generator
 ![Quiz Generator](assets/quiz-generator.png)
 
 ### Study Planner
@@ -154,3 +160,6 @@ Computer Engineering Student
 
 ### Progress Dashboard
 ![Progress Dashboard](assets/progress-dashboard.png)
+![Dashboard Analytics](assets/dashboard-analytics.png)
+![Dashboard History](assets/dashboard-history.png)
+![Dashboard Activity](assets/dashboard-activity.png)
