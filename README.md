@@ -144,22 +144,22 @@ Computer Engineering Student
 ## Application Screenshots
 
 ### Homepage
-![Homepage](assets/homepage.png)
-![Homepage Features](assets/homepage-features.png)
-![Homepage Section 2](assets/homepage-section-2.png)
-![Homepage Section 3](assets/homepage-section-3.png)
+![Homepage](assets/01_homepage.png)
+![Homepage Features](assets/02_homepage-features.png)
+![Homepage Section 2](assets/03_homepage-section-2.png)
+![Homepage Section 3](assets/04_homepage-section-3.png)
 
 ### Study Materials
-![Study Materials](assets/study-materials.png)
+![Study Materials](assets/05_study-materials.png)
 
 ### Quiz Generator
-![Quiz Generator](assets/quiz-generator.png)
+![Quiz Generator](assets/06_quiz-generator.png)
 
 ### Study Planner
-![Study Planner](assets/study-planner.png)
+![Study Planner](assets/07_study-planner.png)
 
 ### Progress Dashboard
-![Progress Dashboard](assets/progress-dashboard.png)
-![Dashboard Analytics](assets/dashboard-analytics.png)
-![Dashboard History](assets/dashboard-history.png)
-![Dashboard Activity](assets/dashboard-activity.png)
+![Progress Dashboard](assets/08_progress-dashboard.png)
+![Dashboard Analytics](assets/09_dashboard-analytics.png)
+![Dashboard History](assets/10_dashboard-history.png)
+![Dashboard Activity](assets/11_dashboard-activity.png)
